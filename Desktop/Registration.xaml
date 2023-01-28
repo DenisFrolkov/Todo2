@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Registration" Height="600" Width="800">
     <Grid>
-        <Grid.RowDefinitions>
+            <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
@@ -61,6 +61,7 @@
             Grid.Column = "1" 
             Grid.Row="2">
             <TextBox
+                Name="TextBoxName"
                 BorderBrush="#EDEDED" 
                 Height="34" 
                 Width="326"
@@ -83,6 +84,7 @@
             Grid.Column = "1" 
             Grid.Row="4">
             <TextBox
+                Name="TextBoxEmail"
                 BorderBrush="#EDEDED" 
                 Height="34" 
                 Width="326"
@@ -105,6 +107,7 @@
             Grid.Column = "1" 
             Grid.Row="6">
             <TextBox
+                Name="TextBoxPass"
                 BorderBrush="#EDEDED" 
                 Height="34" 
                 Width="326"
@@ -127,6 +130,7 @@
             Grid.Column = "1" 
             Grid.Row="8">
             <TextBox
+                Name="TextBoxRepeat"
                 BorderBrush="#EDEDED" 
                 Height="34" 
                 Width="326"
@@ -138,6 +142,8 @@
             Grid.Column = "1" 
             Grid.Row="9">
             <Button
+                Name="ButtonRegister"
+                Click="Button_Register"
                 FontSize="18" 
                 Content = "Зарегистрироваться" 
                 Padding="70, 13, 78, 13" 
@@ -158,7 +164,9 @@
             Margin="0, 5, 74, 5"
             Grid.Column = "1" 
             Grid.Row="10">
-            <Button 
+            <Button
+                Name="Buttom_Back"
+                Click="Back_Click"
                 FontSize="18" 
                 Content = "Назад" 
                 Padding="130, 13, 136, 13"
