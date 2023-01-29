@@ -55,8 +55,6 @@ namespace Desktop
                 var wind = new MainEmpty();
                 wind.Show();
                 Manager.CurrentWindow.Close();
-                Manager.CurrentWindow.Show();
-                this.Close();
             }
         }
 
@@ -66,10 +64,7 @@ namespace Desktop
             wind.Show();
             Manager.CurrentWindow.Hide();
 
-            //Back
-
-            Manager.CurrentWindow.Show();
-            this.Close();
+            //
         }
     }
 }
