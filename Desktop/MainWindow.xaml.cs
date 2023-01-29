@@ -38,14 +38,24 @@ namespace Desktop
 
         private void ButtonEnter(object sender, RoutedEventArgs e)
         {
-            var wind = new MainEmpty();
-            wind.Show();
-            Manager.CurrentWindow.Hide();
+            var Email = Validator.ValidEmail(TextBoxEmail.Text);
+            var Password = Validator.ValidPass(TextBoxPassword.Text);
 
-            //Back
+            if (Email != null)
+            {
+                MessageBox.Show(Email);
+            }
+            if (Password != null)
+            {
+                MessageBox.Show(Password);
+            }
 
-            Manager.CurrentWindow.Show();
-            this.Close();
+            if (Email == null || Password == null )
+            {
+                var wind = new MainEmpty();
+                wind.Show();
+                Manager.CurrentWindow.Close();
+            }
         }
 
         private void ButtonRegist(object sender, RoutedEventArgs e)
@@ -54,10 +64,7 @@ namespace Desktop
             wind.Show();
             Manager.CurrentWindow.Hide();
 
-            //Back
-
-            Manager.CurrentWindow.Show();
-            this.Close();
+            //
         }
     }
 }

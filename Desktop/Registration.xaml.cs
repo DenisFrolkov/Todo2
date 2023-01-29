@@ -7,6 +7,7 @@ namespace Desktop
         public Registration()
         {
             InitializeComponent();
+            Manager.RegistrationWindow = this;
         }
 
         private void Button_Register(object sender, RoutedEventArgs e)
@@ -27,25 +28,22 @@ namespace Desktop
             {
                 MessageBox.Show(Password);
             }
-            if (Repeat != null)
+            if (Password != Repeat)
             {
                 MessageBox.Show(Repeat);
             }
 
-            if (Name == null || Email == null || Password == null || Repeat == null)
+            if (Name == null && Email == null && Password == null && Repeat == null)
             {
                 var wind = new MainEmpty();
                 wind.Show();
                 Manager.CurrentWindow.Close();
+                Manager.RegistrationWindow.Close();
             }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            var wind = new MainWindow();
-            wind.Show();
-            Manager.CurrentWindow.Hide();
-            
             Manager.CurrentWindow.Show();
             this.Close();
         }
