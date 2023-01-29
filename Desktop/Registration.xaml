@@ -107,7 +107,7 @@
             Grid.Column = "1" 
             Grid.Row="6">
             <TextBox
-                Name="TextBoxPass"
+                Name="TextBoxPassword"
                 BorderBrush="#EDEDED" 
                 Height="34" 
                 Width="326"

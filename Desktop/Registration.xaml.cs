@@ -1,4 +1,6 @@
 using System.Windows;
+using Desktop.Repository;
+using Entities.Models;
 
 namespace Desktop
 {
@@ -13,8 +15,8 @@ namespace Desktop
         {
             var Name = Validator.ValidName(TextBoxName.Text);
             var Email = Validator.ValidEmail(TextBoxEmail.Text);
-            var Password = Validator.ValidPass(TextBoxPass.Text);
-            var Repeat = Validator.ValidRepeat(TextBoxPass.Text, TextBoxRepeat.Text);
+            var Password = Validator.ValidPass(TextBoxPassword.Text);
+            var Repeat = Validator.ValidRepeat(TextBoxPassword.Text, TextBoxRepeat.Text);
             if (Name != null)
             {
                 MessageBox.Show(Name);
@@ -34,9 +36,15 @@ namespace Desktop
 
             if (Name == null || Email == null || Password == null || Repeat == null)
             {
-                var wind = new MainEmpty();
-                wind.Show();
-                Manager.CurrentWindow.Close();
+                var RegistrationUser = UserRepository.RegistrationUser(new UserModel(TextBoxName.Text, TextBoxEmail.Text, TextBoxPassword.Text));
+                if (RegistrationUser != null)
+                {
+                    var wind = new MainEmpty();
+                    wind.Show();
+                    Manager.CurrentWindow.Close();
+                    Manager.CurrentWindow.Show();
+                    this.Close();
+                }
             }
         }
 

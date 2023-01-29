@@ -57,6 +57,7 @@
         <Compile Include="Registration.xaml.cs">
           <DependentUpon>Registration.xaml</DependentUpon>
         </Compile>
+        <Compile Include="Repository\UserRepository.cs" />
         <Compile Include="Validator.cs" />
         <Page Include="MainEmpty.xaml" />
         <Page Include="MainWindow.xaml">
@@ -98,6 +99,12 @@
       <Content Include="fonts\Actor_regular.ttf" />
       <Resource Include="images\profile.png" />
       <Resource Include="images\Logo.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Entities\Entities.csproj">
+        <Project>{25c38111-346b-47b6-807f-14803d8df883}</Project>
+        <Name>Entities</Name>
+      </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

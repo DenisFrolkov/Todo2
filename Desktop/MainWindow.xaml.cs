@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using Desktop.Repository;
+using Entities.Models;
 
 namespace Desktop
 {
@@ -31,21 +33,25 @@ namespace Desktop
 
             Manager.CurrentWindow.Show();
             this.Close();
-
-            // var PassBox = Validator.ValidPass(ValidPass.Text);
         }
         
 
         private void ButtonEnter(object sender, RoutedEventArgs e)
         {
-            var wind = new MainEmpty();
-            wind.Show();
-            Manager.CurrentWindow.Hide();
+            var loginUser = UserRepository.LoginUser(new UserModel("", TextBoxEmail.Text, TextBoxPassword.Text));
+            if (loginUser != null)
+            {
+                var wind = new MainEmpty();
+                wind.Show();
+                Manager.CurrentWindow.Hide();
 
-            //Back
-
-            Manager.CurrentWindow.Show();
-            this.Close();
+                Manager.CurrentWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Ошибка");  
+            }
         }
 
         private void ButtonRegist(object sender, RoutedEventArgs e)
