@@ -1,0 +1,42 @@
+Index: Desktop/Registration.xaml.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System.Windows;\r\nusing Desktop.Repository;\r\nusing Entities.Models;\r\n\r\nnamespace Desktop\r\n{\r\n    public partial class Registration : Window\r\n    {\r\n        public Registration()\r\n        {\r\n            InitializeComponent();\r\n        }\r\n\r\n        private void Button_Register(object sender, RoutedEventArgs e)\r\n        {\r\n            var Name = Validator.ValidName(TextBoxName.Text);\r\n            var Email = Validator.ValidEmail(TextBoxEmail.Text);\r\n            var Password = Validator.ValidPass(TextBoxPassword.Text);\r\n            var Repeat = Validator.ValidRepeat(TextBoxPassword.Text, TextBoxRepeat.Text);\r\n            if (Name != null)\r\n            {\r\n                MessageBox.Show(Name);\r\n            }\r\n            if (Email != null)\r\n            {\r\n                MessageBox.Show(Email);\r\n            }\r\n            if (Password != null)\r\n            {\r\n                MessageBox.Show(Password);\r\n            }\r\n            if (Repeat != null)\r\n            {\r\n                MessageBox.Show(Repeat);\r\n            }\r\n\r\n            if (Name == null || Email == null || Password == null || Repeat == null)\r\n            {\r\n                var RegistrationUser = UserRepository.RegistrationUser(new UserModel(TextBoxName.Text, TextBoxEmail.Text, TextBoxPassword.Text));\r\n                if (RegistrationUser != null)\r\n                {\r\n                    var wind = new MainEmpty();\r\n                    wind.Show();\r\n                    Manager.CurrentWindow.Close();\r\n                    Manager.CurrentWindow.Show();\r\n                    this.Close();\r\n                }\r\n            }\r\n        }\r\n\r\n        private void Back_Click(object sender, RoutedEventArgs e)\r\n        {\r\n            var wind = new MainWindow();\r\n            wind.Show();\r\n            Manager.CurrentWindow.Hide();\r\n            \r\n            Manager.CurrentWindow.Show();\r\n            this.Close();\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Desktop/Registration.xaml.cs b/Desktop/Registration.xaml.cs
+--- a/Desktop/Registration.xaml.cs	(revision b81bb0ce3ba44ab6103b2eddd2f0adb54c5dbc67)
++++ b/Desktop/Registration.xaml.cs	(date 1675162405249)
+@@ -42,8 +42,11 @@
+                     var wind = new MainEmpty();
+                     wind.Show();
+                     Manager.CurrentWindow.Close();
+-                    Manager.CurrentWindow.Show();
+-                    this.Close();
++                    Manager.RegistrationWindow.Close();
++                }
++                else
++                {
++                    MessageBox.Show("Ошибка");
+                 }
+             }
+         }
+Index: Desktop/Manager.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System.Windows;\r\n\r\nnamespace Desktop\r\n{\r\n    public class Manager\r\n    {\r\n        public static Window CurrentWindow { get; set; }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Desktop/Manager.cs b/Desktop/Manager.cs
+--- a/Desktop/Manager.cs	(revision b81bb0ce3ba44ab6103b2eddd2f0adb54c5dbc67)
++++ b/Desktop/Manager.cs	(date 1675162326552)
+@@ -5,5 +5,6 @@
+     public class Manager
+     {
+         public static Window CurrentWindow { get; set; }
++        public static Window RegistrationWindow { get; set; }
+     }
+ }
+\ No newline at end of file

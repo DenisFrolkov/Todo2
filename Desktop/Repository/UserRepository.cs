@@ -8,7 +8,7 @@ namespace Desktop.Repository
 {
     public class UserRepository
     {
-        public static readonly List<UserModel> Users = new List<UserModel>
+        private static readonly List<UserModel> Users = new List<UserModel>
         {
             new UserModel("Denis", "deniska-frolkov@mail.ru", "12345678"),
             new UserModel("Liz", "lizaliza@mail.ru", "123454321")

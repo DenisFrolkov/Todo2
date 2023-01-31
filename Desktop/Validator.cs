@@ -44,7 +44,7 @@ namespace Desktop
 
         public static string ValidRepeat(string password, string repeat)
         {
-            if (password.Length == repeat.Length)
+            if (password == repeat)
             {
                 return null;
             }

@@ -13,6 +13,7 @@ namespace Desktop
 
         private void Button_Register(object sender, RoutedEventArgs e)
         {
+            var user = "Такой пользователь уже существует"; 
             var Name = Validator.ValidName(TextBoxName.Text);
             var Email = Validator.ValidEmail(TextBoxEmail.Text);
             var Password = Validator.ValidPass(TextBoxPassword.Text);
@@ -34,16 +35,18 @@ namespace Desktop
                 MessageBox.Show(Repeat);
             }
 
-            if (Name == null || Email == null || Password == null || Repeat == null)
+            if (Name == null && Email == null && Password == null && Repeat == null)
             {
-                var RegistrationUser = UserRepository.RegistrationUser(new UserModel(TextBoxName.Text, TextBoxEmail.Text, TextBoxPassword.Text));
-                if (RegistrationUser != null)
+                var loginUser = UserRepository.RegistrationUser(new UserModel(TextBoxName.Text, TextBoxEmail.Text, TextBoxPassword.Text));
+                if (loginUser != null)
                 {
                     var wind = new MainEmpty();
                     wind.Show();
-                    Manager.CurrentWindow.Close();
-                    Manager.CurrentWindow.Show();
-                    this.Close();
+                    Hide();
+                }
+                else
+                {
+                    MessageBox.Show(user);  
                 }
             }
         }
@@ -52,10 +55,7 @@ namespace Desktop
         {
             var wind = new MainWindow();
             wind.Show();
-            Manager.CurrentWindow.Hide();
-            
-            Manager.CurrentWindow.Show();
-            this.Close();
+            Hide();
         }
     }
 }
